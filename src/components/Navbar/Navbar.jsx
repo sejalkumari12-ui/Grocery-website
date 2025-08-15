@@ -2,16 +2,33 @@ import { GoHeartFill } from "react-icons/go";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { IoMdSearch } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="bg-white fixed top-0 right-0 left-0 z-50 shadow-md">
+    <header
+      className={`bg-white fixed top-0 right-0 left-0 z-50 transition-shadow duration-300 ${
+        isScrolled
+          ? "drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]"
+          : ""
+      }`}
+    >
       <nav className="max-w-[1400px] mx-auto md:h-[14vh] h-[9vh] flex justify-between items-center px-10 relative">
         {/* Logo */}
         <a href="#" className="text-3xl font-bold">
@@ -21,10 +38,7 @@ const Navbar = () => {
         {/* Desktop menu */}
         <ul className="md:flex items-center gap-x-15 hidden">
           <li>
-            <a
-              href="#"
-              className="font-semibold tracking-wide text-orange-500"
-            >
+            <a href="#" className="font-semibold tracking-wide text-orange-500">
               Home
             </a>
           </li>
@@ -86,27 +100,29 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {showMenu && (
-          <ul className="flex flex-col gap-y-6 p-6 items-center md:hidden absolute top-full left-1/2 transform -translate-x-1/2 bg-orange-500/50 backdrop-blur-xl rounded-xl mt-2 w-[90%] transition-all duration-300 z-50">
+          <ul
+            className="flex flex-col gap-y-6 p-6 items-center md:hidden absolute top-full left-1/2 transform -translate-x-1/2 
+              bg-gradient-to-b from-orange-100/80 to-orange-300/60 
+              backdrop-blur-lg shadow-lg rounded-2xl mt-2 w-[90%] 
+              transition-all duration-300 z-50"
+          >
             <li>
-              <a
-                href="#"
-                className="font-semibold tracking-wide text-orange-500"
-              >
+              <a href="#" className="font-semibold text-orange-500">
                 Home
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="font-semibold tracking-wide text-zinc-800 hover:text-orange-500"
+                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
               >
-                About us
+                About Us
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="font-semibold tracking-wide text-zinc-800 hover:text-orange-500"
+                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
               >
                 Process
               </a>
@@ -114,20 +130,22 @@ const Navbar = () => {
             <li>
               <a
                 href="#"
-                className="font-semibold tracking-wide text-zinc-800 hover:text-orange-500"
+                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
               >
-                Contact us
+                Contact Us
               </a>
             </li>
-            <li className="flex p-1 border-2 border-orange-500 rounded-full w-full">
+
+            {/* Search bar */}
+            <li className="flex items-center border border-orange-400 rounded-full w-full px-3 py-1 bg-white/70 backdrop-blur-sm shadow-inner">
               <input
                 type="text"
                 name="text"
-                placeholder="search...."
+                placeholder="Search..."
                 autoComplete="off"
-                className="flex-1 h-[4vh] px-3 focus:outline-none"
+                className="flex-1 px-2 py-1 bg-transparent focus:outline-none text-sm"
               />
-              <button className="bg-gradient-to-b from-red-600 to-orange-300 text-white w-10 flex justify-center items-center rounded-full text-xl">
+              <button className="bg-gradient-to-b from-orange-400 to-orange-500 hover:to-orange-600 active:to-orange-600 text-white w-8 h-8 flex justify-center items-center rounded-full text-lg active:scale-90 transition-transform">
                 <IoMdSearch />
               </button>
             </li>
