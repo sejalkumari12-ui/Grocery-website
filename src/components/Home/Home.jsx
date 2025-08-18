@@ -1,8 +1,8 @@
-import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import Hero from '../hero/hero'
 import Category from '../category/Category'
 import Values from '../value/Values'
+import Products from '../Products/Products'
 
 const Home = () => {
   return (
@@ -11,6 +11,7 @@ const Home = () => {
       <Hero />
       <Category />
       <Values />
+      <Products />
     </div>
   )
 }
