@@ -1,4 +1,5 @@
 import React from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Footer = () => {
   return (
@@ -52,7 +53,7 @@ const Footer = () => {
               type="submit"
               className="bg-orange-500 text-white px-3 py-2 rounded-r-md hover:bg-orange-600 transition"
             >
-              ➤
+              <IoIosArrowForward />
             </button>
           </form>
         </div>
