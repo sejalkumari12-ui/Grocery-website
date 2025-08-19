@@ -24,12 +24,10 @@ const Navbar = () => {
   return (
     <header
       className={`bg-white fixed top-0 right-0 left-0 z-50 transition-shadow duration-300 ${
-        isScrolled
-          ? "drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]"
-          : ""
+        isScrolled ? "drop-shadow-[0_4px_25px_rgba(0,0,0,0.3)]" : ""
       }`}
     >
-      <nav className="max-w-[1400px] mx-auto md:h-[14vh] h-[9vh] flex justify-between items-center px-10 relative">
+      <nav className="max-w-[1400px] mx-auto md:h-[14vh] h-[9vh] flex justify-between items-center px-10">
         {/* Logo */}
         <a href="#" className="text-3xl font-bold">
           Gr<span className="text-orange-500 uppercase">o</span>cify
@@ -97,61 +95,61 @@ const Navbar = () => {
             <IoMenu />
           </button>
         </div>
-
-        {/* Mobile menu */}
-        {showMenu && (
-          <ul
-            className="flex flex-col gap-y-6 p-6 items-center md:hidden absolute top-full left-1/2 transform -translate-x-1/2 
-              bg-gradient-to-b from-orange-100/80 to-orange-300/60 
-              backdrop-blur-lg shadow-lg rounded-2xl mt-2 w-[90%] 
-              transition-all duration-300 z-50"
-          >
-            <li>
-              <a href="#" className="font-semibold text-orange-500">
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
-              >
-                About Us
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
-              >
-                Process
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="font-medium text-zinc-800 hover:text-orange-500 active:text-orange-500 active:scale-95 transition-all"
-              >
-                Contact Us
-              </a>
-            </li>
-
-            {/* Search bar */}
-            <li className="flex items-center border border-orange-400 rounded-full w-full px-3 py-1 bg-white/70 backdrop-blur-sm shadow-inner">
-              <input
-                type="text"
-                name="text"
-                placeholder="Search..."
-                autoComplete="off"
-                className="flex-1 px-2 py-1 bg-transparent focus:outline-none text-sm"
-              />
-              <button className="bg-gradient-to-b from-orange-400 to-orange-500 hover:to-orange-600 active:to-orange-600 text-white w-8 h-8 flex justify-center items-center rounded-full text-lg active:scale-90 transition-transform">
-                <IoMdSearch />
-              </button>
-            </li>
-          </ul>
-        )}
       </nav>
+
+      {/* Mobile menu (fixed so it won't disappear) */}
+      {showMenu && (
+        <ul
+          className="flex flex-col gap-y-6 p-6 items-center md:hidden fixed top-[9vh] left-1/2 transform -translate-x-1/2 
+            bg-gradient-to-b from-orange-100/95 to-orange-300/80 
+            backdrop-blur-lg shadow-lg rounded-2xl mt-2 w-[90%] 
+            transition-all duration-300 z-40"
+        >
+          <li>
+            <a href="#" className="font-semibold text-orange-500">
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="font-medium text-zinc-800 hover:text-orange-500"
+            >
+              About Us
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="font-medium text-zinc-800 hover:text-orange-500"
+            >
+              Process
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="font-medium text-zinc-800 hover:text-orange-500"
+            >
+              Contact Us
+            </a>
+          </li>
+
+          {/* Search bar */}
+          <li className="flex items-center border border-orange-400 rounded-full w-full px-3 py-1 bg-white/70 backdrop-blur-sm shadow-inner">
+            <input
+              type="text"
+              name="text"
+              placeholder="Search..."
+              autoComplete="off"
+              className="flex-1 px-2 py-1 bg-transparent focus:outline-none text-sm"
+            />
+            <button className="bg-gradient-to-b from-orange-400 to-orange-500 hover:to-orange-600 text-white w-8 h-8 flex justify-center items-center rounded-full text-lg">
+              <IoMdSearch />
+            </button>
+          </li>
+        </ul>
+      )}
     </header>
   );
 };

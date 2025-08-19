@@ -13,10 +13,9 @@ const Products = () => {
     ? productsList
     : productsList.filter(item => item.category === activeTab)
 
-  // showAll true -> saare products, false -> sirf 8
   const renderCards = (showAll ? filtereditems : filtereditems.slice(0, 8)).map(product => (
     <Cards 
-      key={product.id}
+      key={product.id}   // make sure IDs in productsList are unique
       image={product.image} 
       name={product.name} 
       price={product.price} 
@@ -30,13 +29,13 @@ const Products = () => {
         <Heading highlight="Our" heading="Products" />
 
         {/* Tabs */}
-        <div className="flex gap-3 justify-center mt-10">
+        <div className="flex flex-wrap gap-3 justify-center mt-10">
           {categories.map(category => (
             <button
               key={category}
               onClick={() => {
                 setActiveTab(category)
-                setShowAll(false) // tab change hone par wapas 8 dikhao
+                setShowAll(false)
               }}
               className={`px-3 py-2 text-lg rounded-lg cursor-pointer ${
                 activeTab === category
@@ -56,10 +55,11 @@ const Products = () => {
 
         {/* Toggle Button */}
         <div className="mt-16 mx-auto w-fit">
-          {filtereditems.length > 8 && ( // agar 8 se zyada items hai tabhi dikhao
-            <button onClick={() => setShowAll(!showAll)}>
-              <Button content={showAll ? "View Less" : "View All"} />
-            </button>
+          {filtereditems.length > 8 && (
+            <Button
+              content={showAll ? "View Less" : "View All"}
+              onClick={() => setShowAll(!showAll)}
+            />
           )}
         </div>
       </div>
