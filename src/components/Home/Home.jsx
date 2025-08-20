@@ -1,5 +1,5 @@
 import Navbar from '../Navbar/Navbar'
-import Hero from '../hero/hero'
+import Hero from '../hero/Hero'
 import Category from '../category/Category'
 import Values from '../value/Values'
 import Products from '../Products/Products'
